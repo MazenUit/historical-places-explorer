@@ -1,5 +1,5 @@
 import { useRouter } from "expo-router"
-import { useCallback, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 import { FlatList, RefreshControl, View } from "react-native"
 import { PlaceCard } from "../../components/PlaceCard"
 import { historicalPlaces } from "../../data/places"
@@ -17,6 +17,12 @@ export default function Index() {
     setPlaces(historicalPlaces)
     setTimeout(() => setRefreshing(false), 800)
   }, [setPlaces])
+
+  useEffect(() => {
+    if (places.length === 0) {
+      setPlaces(historicalPlaces)
+    }
+  }, [places, setPlaces])
 
   return (
     <View className="flex-1 bg-indigo-400 p-4">
@@ -39,7 +45,7 @@ export default function Index() {
             tintColor="#1d4ed8"
           />
         }
-        showsVerticalScrollIndicator={false} 
+        showsVerticalScrollIndicator={false}
         contentContainerStyle={{ paddingBottom: 100 }}
       />
     </View>
