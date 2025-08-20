@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { Pressable, Text, View } from "react-native"
-import { PlaceCard } from "../components/PlaceCard"
-import { usePlacesStore } from "./store/usePlacesStore"
+import { PlaceCard } from "../../components/PlaceCard"
+import { usePlacesStore } from "../../store/usePlacesStore"
 
 export default function Explore() {
   const places = usePlacesStore((state) => state.places)

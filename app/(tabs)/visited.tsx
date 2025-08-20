@@ -1,6 +1,6 @@
 import { FlatList, Text, View } from "react-native"
-import { PlaceCard } from "../components/PlaceCard"
-import { usePlacesStore } from "./store/usePlacesStore"
+import { PlaceCard } from "../../components/PlaceCard"
+import { usePlacesStore } from "../../store/usePlacesStore"
 
 export default function Visited() {
   const places = usePlacesStore((state) => state.places)
