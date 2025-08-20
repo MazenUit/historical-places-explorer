@@ -1,6 +1,7 @@
 import { Stack } from "expo-router"
 import * as SplashScreen from "expo-splash-screen"
 import { useEffect } from "react"
+import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context"
 import { historicalPlaces } from "./data/places"
 import "./globals.css"
 import { usePlacesStore } from "./store/usePlacesStore"
@@ -12,18 +13,20 @@ export default function RootLayout() {
 
   useEffect(() => {
     setPlaces(historicalPlaces)
-
     const hideSplash = async () => {
       await new Promise((resolve) => setTimeout(resolve, 1000))
       await SplashScreen.hideAsync()
     }
-
     hideSplash()
   }, [])
 
   return (
-    <Stack>
-      <Stack.Screen name="index" options={{ headerShown: false }} />
-    </Stack>
+    <SafeAreaProvider>
+      <SafeAreaView className="flex-1 bg-white">
+        <Stack>
+          <Stack.Screen name="index" options={{ headerShown: false }} />
+        </Stack>
+      </SafeAreaView>
+    </SafeAreaProvider>
   )
 }
