@@ -1,5 +1,5 @@
 import { useRouter } from "expo-router"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Pressable, Text, View } from "react-native"
 import { PlaceCard } from "../../components/PlaceCard"
 import { usePlacesStore } from "../../store/usePlacesStore"
@@ -19,6 +19,10 @@ export default function Explore() {
     }
     setSuggestedPlace(places[randomIndex])
   }
+
+  useEffect(() => {
+    setSuggestedPlace(null)
+  }, [places])
 
   return (
     <View className="flex-1 bg-indigo-400 p-6">
