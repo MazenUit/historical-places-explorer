@@ -7,7 +7,7 @@ export default function Index() {
   const toggleVisited = usePlacesStore((state) => state.toggleVisited)
 
   return (
-    <View className="flex-1 bg-gray-50 p-4">
+    <View className="flex-1 bg-indigo-400 p-4">
       <FlatList
         data={places}
         keyExtractor={(item) => item.id}

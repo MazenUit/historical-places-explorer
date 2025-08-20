@@ -16,8 +16,8 @@ export default function Explore() {
   }
 
   return (
-    <View className="flex-1 bg-gray-50 p-6">
-      <Text className="text-2xl font-bold text-gray-800 mb-6 text-center">
+    <View className="flex-1 bg-indigo-400 p-6">
+      <Text className="text-2xl font-bold text-white mb-6 text-center">
         Explore a Random Place
       </Text>
 
@@ -34,7 +34,7 @@ export default function Explore() {
         <PlaceCard place={suggestedPlace} showToggle={false} />
       ) : (
         <View className="flex-1 justify-center items-center">
-          <Text className="text-gray-500 text-base">
+          <Text className="text-white text-base">
             Tap the button to get a random place suggestion!
           </Text>
         </View>
