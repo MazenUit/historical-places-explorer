@@ -1,3 +1,4 @@
+import { useRouter } from "expo-router"
 import { useState } from "react"
 import { Pressable, Text, View } from "react-native"
 import { PlaceCard } from "../../components/PlaceCard"
@@ -5,13 +6,17 @@ import { usePlacesStore } from "../../store/usePlacesStore"
 
 export default function Explore() {
   const places = usePlacesStore((state) => state.places)
-  const [suggestedPlace, setSuggestedPlace] = useState<typeof places[0] | null>(
-    null
-  )
+  const [suggestedPlace, setSuggestedPlace] = useState<typeof places[0] | null>(null)
+  const router = useRouter()
 
   const suggestRandomPlace = () => {
     if (places.length === 0) return
-    const randomIndex = Math.floor(Math.random() * places.length)
+    let randomIndex = Math.floor(Math.random() * places.length)
+    if (suggestedPlace && places.length > 1) {
+      while (places[randomIndex].id === suggestedPlace.id) {
+        randomIndex = Math.floor(Math.random() * places.length)
+      }
+    }
     setSuggestedPlace(places[randomIndex])
   }
 
@@ -31,7 +36,13 @@ export default function Explore() {
       </Pressable>
 
       {suggestedPlace ? (
-        <PlaceCard place={suggestedPlace} showToggle={false} />
+        <View className="space-y-4">
+          <PlaceCard
+            place={suggestedPlace}
+            showToggle={false}
+            onPress={() => router.push(`/${suggestedPlace.id}`)}
+          />
+        </View>
       ) : (
         <View className="flex-1 justify-center items-center">
           <Text className="text-white text-base">

@@ -14,6 +14,7 @@ export default function RootLayout() {
 
   useEffect(() => {
     setPlaces(historicalPlaces)
+
     const hideSplash = async () => {
       await new Promise((resolve) => setTimeout(resolve, 800))
       await SplashScreen.hideAsync()

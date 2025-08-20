@@ -20,7 +20,7 @@ export default function PlaceDetails() {
       <Stack.Screen
         options={{
           title: place.name,
-          headerBackTitleVisible: false,
+         headerBackTitle: "",
         }}
       />
       <ScrollView className="flex-1 bg-white p-4">
